@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Attach or create tmux session named the same as current directory.
+
+path_name="$(basename "$PWD" | tr . -)"
+session_name=${1-$path_name}
+
+create_if_needed_and_attach() {
+  if [ -z "${TMUX:-}" ]; then
+    tmux new-session -As "$session_name"
+  else
+    if ! tmux has-session -t "$session_name" >/dev/null 2>&1; then
+      env TMUX='' tmux new-session -A -s "$session_name" -d
+    fi
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+create_if_needed_and_attach

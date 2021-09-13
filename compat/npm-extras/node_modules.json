@@ -1,0 +1,7 @@
+[
+  "dot-language-server",
+  "stylelint-lsp",
+  "typescript-language-server",
+  "vim-language-server",
+  "vscode-langservers-extracted"
+]

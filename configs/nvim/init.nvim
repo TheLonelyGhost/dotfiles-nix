@@ -1,0 +1,26 @@
+" vim: ft=vim
+
+augroup vimrcEx
+  autocmd!
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
+
+  " if filereadable(expand('~/.config/nvim/filetype_aliases.vim'))
+  "   source ~/.config/nvim/filetype_aliases.vim
+  " endif
+
+  " " Hack because ftplugin/bin.vim doesn't set syntax properly
+  " autocmd FileType bin set syntax=xxd
+
+  " " When switching between buffers or done inserting, refresh the syntax
+  " " highlighting so it doesn't get all wonky in big files
+  " autocmd BufEnter,InsertLeave * :syntax sync fromstart
+augroup END
+
+set number
