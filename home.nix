@@ -24,7 +24,7 @@ in
     ./modules/zsh.nix
   ];
 
-  home.packages = pkgs.lib.optionals (!isWSL) [
+  home.packages = pkgs.lib.optionals (!isWSL && pkgs.stdenv.isLinux) [
     # This is generally better to install on the Windows side and execute from within WSL
     pkgs.keepassx-community
   ];
