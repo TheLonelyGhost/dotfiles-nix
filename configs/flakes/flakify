@@ -5,12 +5,22 @@ if ! [ -e flake.nix ]; then
   cat >flake.nix <<'EOH'
 {
   description = "A basic flake with a shell";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs = {
+    type = "github";
+    owner = "NixOS";
+    repo = "nixpkgs";
+    ref = "nixpkgs-unstable";
+    # Known-stable revision:
+    #rev = "f096b7122ab08e93c8b052c92461ca71b80c0cc8";
+  };
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        # config.allowUnfree = true;
+      };
     in {
       devShell = pkgs.mkShell {
         nativeBuildInputs = [
