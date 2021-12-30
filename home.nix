@@ -15,6 +15,7 @@ in
     ./modules/dev-cli.nix
     ./modules/direnv.nix
     ./modules/git.nix
+    ./modules/golang.nix
     ./modules/gpg.nix
     ./modules/neovim.nix
     ./modules/ripgrep.nix
