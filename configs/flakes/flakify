@@ -32,6 +32,8 @@ if ! [ -e flake.nix ]; then
     });
 }
 EOH
+
+  git add -N ./flake.nix 2>/dev/null || true
 fi
 
 if ! grep -qFe 'use flake' ./.envrc 1>/dev/null 2>&1; then
