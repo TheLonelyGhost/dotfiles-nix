@@ -22,6 +22,7 @@ in
   programs.zsh = {
     enable = true;
     defaultKeymap = "emacs";
+    enableCompletion = true;
 
     plugins = [
       zsh-fast-syntax-highlighting
@@ -51,6 +52,8 @@ in
     zmodload zsh/zprof
     # Nixpkgs installation (not NixOS)
     source "${pkgs.nix}/etc/profile.d/nix.sh"
+
+    fpath=("${pkgs.zsh}"/share/zsh/*/functions $fpath)
 
     export NIX_PATH="${homeDir}/.nix-defexpr/channels''${NIX_PATH:+:}''${NIX_PATH:-}"
     unset __HM_SESS_VARS_SOURCED
