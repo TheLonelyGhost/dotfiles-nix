@@ -33,6 +33,8 @@ in
     };
 
     initExtra = ''
+    compdef g=git
+
     for filename in $(find "${homeDir}/.zsh/config" -name '*.zsh' -or -name '*.sh'); do
       source "$filename"
     done
@@ -52,8 +54,6 @@ in
     zmodload zsh/zprof
     # Nixpkgs installation (not NixOS)
     source "${pkgs.nix}/etc/profile.d/nix.sh"
-
-    fpath=("${pkgs.zsh}"/share/zsh/*/functions $fpath)
 
     export NIX_PATH="${homeDir}/.nix-defexpr/channels''${NIX_PATH:+:}''${NIX_PATH:-}"
     unset __HM_SESS_VARS_SOURCED
