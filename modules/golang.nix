@@ -5,11 +5,27 @@ let
   sources = import ../nix/sources.nix;
   pkgs = import sources.nixpkgs {};
 
-  revel = pkgs.callPackage ../packages/revel.nix {};
+  buffalo = pkgs.callPackage ../packages/buffalo.nix {
+    inherit pkgs;
+  };
+  buffaloPlugins = {
+    pop = pkgs.callPackage ../packages/buffalo-pop.nix { inherit pkgs; };
+    heroku = pkgs.callPackage ../packages/buffalo-heroku.nix { inherit pkgs; };
+  };
 in
 {
   home.packages = [
-    revel
+    buffalo
+    buffaloPlugins.heroku
   ];
+
+  home.file.".buffalo.yml".text = ''
+  ---
+  db-type: sqlite3
+  '';
+
+  # home.sessionPath = [
+  #   "${builtins.getEnv "HOME"}/go/bin"
+  # ];
 }
 
