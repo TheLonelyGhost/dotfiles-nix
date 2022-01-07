@@ -52,17 +52,18 @@ in
 
     initExtraFirst = ''
     zmodload zsh/zprof
+    '';
     # Nixpkgs installation (not NixOS)
-    source "${pkgs.nix}/etc/profile.d/nix.sh"
+    # source "${pkgs.nix}/etc/profile.d/nix.sh"
 
-    export NIX_PATH="${homeDir}/.nix-defexpr/channels''${NIX_PATH:+:}''${NIX_PATH:-}"
-    unset __HM_SESS_VARS_SOURCED
-    '';
+    # export NIX_PATH="${homeDir}/.nix-defexpr/channels''${NIX_PATH:+:}''${NIX_PATH:-}"
+    # unset __HM_SESS_VARS_SOURCED
+    # '';
 
-    envExtra = ''
-    # Nix-determined Environment variables
-    source "${homeDir}/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    '';
+    # envExtra = ''
+    # # Nix-determined Environment variables
+    # source "${homeDir}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    # '';
   };
   programs.direnv.enableZshIntegration = true;
   programs.starship.enableZshIntegration = true;
