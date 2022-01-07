@@ -14,8 +14,8 @@ in
 
   programs.gh = {
     enable = true;
-    editor = "${pkgs.neovim-unwrapped}/bin/nvim";
-    gitProtocol = "ssh";
+    settings.editor = "${pkgs.neovim-unwrapped}/bin/nvim";
+    settings.git_protocol = "ssh";
   };
 
   programs.git = {
