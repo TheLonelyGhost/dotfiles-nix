@@ -11,7 +11,6 @@ in
   imports = [
     ./modules/home-manager.nix
 
-    # ./modules/aws.nix
     ./modules/dev-cli.nix
     ./modules/direnv.nix
     ./modules/git.nix
