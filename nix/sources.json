@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "thelonelyghost",
         "repo": "lsp-nix",
-        "rev": "83b483e0c4fed5cfbe7fbd0ef7f89b93abe5426a",
-        "sha256": "1187nx1fsrn8jwh6qrv7xwa4qlr3yjnlw576211ixxq441sc48km",
+        "rev": "504b999ffe52a99ccd91abbb7778992154a2c572",
+        "sha256": "0bgdiw783xxzlwjnplm7g5aszx5dla4ri8yhvzmj9b1p5fn9mnba",
         "type": "tarball",
-        "url": "https://github.com/thelonelyghost/lsp-nix/archive/83b483e0c4fed5cfbe7fbd0ef7f89b93abe5426a.tar.gz",
+        "url": "https://github.com/thelonelyghost/lsp-nix/archive/504b999ffe52a99ccd91abbb7778992154a2c572.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {

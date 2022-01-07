@@ -32,16 +32,16 @@ in
       pkgs.tree-sitter
 
       # CLI Linters
-      pkgs.nodePackages.eslint
-      pkgs.nodePackages.htmlhint
-      pkgs.nodePackages.jsonlint
-      pkgs.nodePackages.stylelint
-      pkgs.python3Packages.isort
-      pkgs.python3Packages.flake8
-      pkgs.python3Packages.flake8-import-order
-      pkgs.python3Packages.yamllint
-      pkgs.shellcheck
-      pkgs.vim-vint
+      lsp.eslint
+      lsp.htmlhint
+      lsp.jsonlint
+      lsp.stylelint
+      lsp.isort
+      lsp.flake8
+      lsp.flake8-import-order
+      lsp.yamllint
+      lsp.shellcheck
+      lsp.vint
 
       # Language Servers
       lsp.dot-language-server
@@ -49,17 +49,18 @@ in
       lsp.typescript-language-server
       lsp.vim-language-server
       lsp.vscode-langservers-extracted
-      pkgs.gopls
-      pkgs.nimlsp
-      pkgs.nodePackages.bash-language-server
-      pkgs.nodePackages.diagnostic-languageserver
-      pkgs.nodePackages.dockerfile-language-server-nodejs
-      pkgs.nodePackages.pyright
-      pkgs.nodePackages.yaml-language-server
-      pkgs.rnix-lsp
-      pkgs.rust-analyzer-unwrapped
-      pkgs.solargraph
-      pkgs.terraform-ls
+
+      lsp.gopls
+      lsp.nim-language-server
+      lsp.bash-language-server
+      lsp.diagnostic-language-server
+      lsp.dockerfile-language-server
+      lsp.pyright
+      lsp.yaml-language-server
+      lsp.nix-language-server
+      lsp.rust-analyzer
+      lsp.solargraph
+      lsp.terraform-language-server
     ];
 
     plugins = [
