@@ -5,27 +5,16 @@ let
   sources = import ../nix/sources.nix;
   pkgs = import sources.nixpkgs {};
 
-  buffalo = pkgs.callPackage ../packages/buffalo.nix {
-    inherit pkgs;
-  };
-  buffaloPlugins = {
-    pop = pkgs.callPackage ../packages/buffalo-pop.nix { inherit pkgs; };
-    heroku = pkgs.callPackage ../packages/buffalo-heroku.nix { inherit pkgs; };
-  };
+  golang-webdev = (import (pkgs.fetchFromGitHub { inherit (sources.golang-webdev) owner repo rev sha256; })).outputs.packages."${builtins.currentSystem}";
 in
 {
   home.packages = [
-    buffalo
-    buffaloPlugins.heroku
+    golang-webdev.buffalo
+    golang-webdev.buffalo-plugin-heroku
   ];
 
   home.file.".buffalo.yml".text = ''
   ---
   db-type: sqlite3
   '';
-
-  # home.sessionPath = [
-  #   "${builtins.getEnv "HOME"}/go/bin"
-  # ];
 }
-

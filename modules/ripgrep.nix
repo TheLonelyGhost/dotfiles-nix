@@ -5,11 +5,12 @@ let
   sources = import ../nix/sources.nix;
   pkgs = import sources.nixpkgs {};
 
-  tag = pkgs.callPackage ../compat/tag {};
+  tag = pkgs.callPackage ../packages/tag {};
 in
 {
   home.packages = [
     pkgs.ripgrep
+    # tag
   ];
 
   home.file.".ripgreprc".text = ''
