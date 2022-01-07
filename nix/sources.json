@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "thelonelyghost",
         "repo": "golang-webdev-nix",
-        "rev": "9c9fa94c8ef6e1dbb748cdc609dc9fc6eb213e3a",
-        "sha256": "1d6ir8pdkzz8p9gwnjv2q5fdsm686ck0gg746k17gc4lq85mvl3c",
+        "rev": "dddd941c4e6fbe9062b0b209003d299ac218db68",
+        "sha256": "0lj7vxmgcyzl5gmmarv2017iz7d7qda9khw2cnp6p7papkjcdrbh",
         "type": "tarball",
-        "url": "https://github.com/thelonelyghost/golang-webdev-nix/archive/9c9fa94c8ef6e1dbb748cdc609dc9fc6eb213e3a.tar.gz",
+        "url": "https://github.com/thelonelyghost/golang-webdev-nix/archive/dddd941c4e6fbe9062b0b209003d299ac218db68.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp-nix": {
