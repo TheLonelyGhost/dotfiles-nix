@@ -7,9 +7,7 @@ let
 
   sources = import ../nix/sources.nix;
   pkgs = import sources.nixpkgs {};
-  npmPackages = import ../compat/npm-extras/default.nix {
-    inherit pkgs system;
-  };
+  lsp = (import (pkgs.fetchFromGitHub { inherit (sources.lsp-nix) owner repo rev sha256; })).outputs.packages."${builtins.currentSystem}";
 in
 {
   home.sessionVariables.EDITOR = "${pkgs.neovim-unwrapped}/bin/nvim";
@@ -46,11 +44,11 @@ in
       pkgs.vim-vint
 
       # Language Servers
-      npmPackages.dot-language-server
-      npmPackages.stylelint-lsp
-      npmPackages.typescript-language-server
-      npmPackages.vim-language-server
-      npmPackages.vscode-langservers-extracted
+      lsp.dot-language-server
+      lsp.stylelint-lsp
+      lsp.typescript-language-server
+      lsp.vim-language-server
+      lsp.vscode-langservers-extracted
       pkgs.gopls
       pkgs.nimlsp
       pkgs.nodePackages.bash-language-server

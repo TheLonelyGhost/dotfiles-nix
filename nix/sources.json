@@ -11,6 +11,18 @@
         "url": "https://github.com/thelonelyghost/golang-webdev-nix/archive/9c9fa94c8ef6e1dbb748cdc609dc9fc6eb213e3a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "lsp-nix": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "thelonelyghost",
+        "repo": "lsp-nix",
+        "rev": "83b483e0c4fed5cfbe7fbd0ef7f89b93abe5426a",
+        "sha256": "1187nx1fsrn8jwh6qrv7xwa4qlr3yjnlw576211ixxq441sc48km",
+        "type": "tarball",
+        "url": "https://github.com/thelonelyghost/lsp-nix/archive/83b483e0c4fed5cfbe7fbd0ef7f89b93abe5426a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
