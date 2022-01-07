@@ -5,12 +5,12 @@ let
   sources = import ../nix/sources.nix;
   pkgs = import sources.nixpkgs {};
 
-  tag = pkgs.callPackage ../packages/tag {};
+  tag = (import (pkgs.fetchFromGitHub { inherit (sources.tag) owner repo rev sha256; })).outputs.defaultApp."${builtins.currentSystem}";
 in
 {
   home.packages = [
     pkgs.ripgrep
-    # tag
+    tag
   ];
 
   home.file.".ripgreprc".text = ''

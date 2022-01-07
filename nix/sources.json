@@ -34,5 +34,17 @@
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/dd98b100651cfbb8804f32d852f75ef7c97a6b74.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tag": {
+        "branch": "master",
+        "description": "Instantly jump to your ag or ripgrep matches.",
+        "homepage": "",
+        "owner": "thelonelyghost",
+        "repo": "tag",
+        "rev": "acebd55789990c549d6e5296c52bfacbe93f2e40",
+        "sha256": "0c8q2yim74a3gzcd2h96dsxirmdkqmyf0c6zkk9y6ah2g73z5np7",
+        "type": "tarball",
+        "url": "https://github.com/thelonelyghost/tag/archive/acebd55789990c549d6e5296c52bfacbe93f2e40.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
