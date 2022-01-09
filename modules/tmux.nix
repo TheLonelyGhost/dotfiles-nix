@@ -1,11 +1,11 @@
-{ system, config, lib, ... }:
+{ pkgs, workstation-deps, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
-let
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-in
 {
+  home.packages = [
+    workstation-deps.tat
+  ];
+
   programs.tmux = {
     enable = true;
     aggressiveResize = true;
@@ -29,25 +29,19 @@ in
     set-option -sa terminal-overrides ',xterm-256color:RGB'
     '';
 
-    plugins = with pkgs; [
+    plugins = [
       # tmuxPlugins.sensible  # Broken
-      tmuxPlugins.cpu
-      tmuxPlugins.battery
+      pkgs.tmuxPlugins.cpu
+      pkgs.tmuxPlugins.battery
       {
-        plugin = tmuxPlugins.gruvbox;
+        plugin = pkgs.tmuxPlugins.gruvbox;
         extraConfig = ''
           set -g @tmux-gruvbox 'dark'
         '';
       }
-      tmuxPlugins.pain-control
-      tmuxPlugins.sidebar
-      tmuxPlugins.yank
+      pkgs.tmuxPlugins.pain-control
+      pkgs.tmuxPlugins.sidebar
+      pkgs.tmuxPlugins.yank
     ];
   };
-
-  home.file.".local/bin/tat" = {
-    text = builtins.readFile ../configs/tmux/tat;
-    executable = true;
-  };
-
 }

@@ -1,14 +1,12 @@
-{ system, config, lib, ... }:
+{ pkgs, workstation-deps, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
-let
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-in
 {
   home.packages = [
     pkgs.coreutils
-    pkgs.niv
+    # pkgs.niv
+    workstation-deps.flakify
+    # workstation-deps.nixify
   ];
 
   programs.bat = {
@@ -19,14 +17,4 @@ in
     };
   };
   programs.zsh.shellAliases.cat = "${pkgs.bat}/bin/bat";
-
-  home.file.".local/bin/nixify" = {
-    text = builtins.readFile ../configs/flakes/nixify;
-    executable = true;
-  };
-
-  home.file.".local/bin/flakify" = {
-    text = builtins.readFile ../configs/flakes/flakify;
-    executable = true;
-  };
 }

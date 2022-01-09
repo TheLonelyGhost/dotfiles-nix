@@ -1,19 +1,16 @@
-{ system, config, lib, ... }:
+{ pkgs, homeDirectory, zsh-plugin-syntax-highlight, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
 let
-  homeDir = builtins.getEnv "HOME";
-
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-
   zsh-fast-syntax-highlighting = {
     name = "zsh-fast-syntax-highlighting";
     src = pkgs.fetchFromGitHub {
-      owner = "zdharma";
+      owner = "zdharma-continuum";
       repo = "fast-syntax-highlighting";
-      rev = "817916dfa907d179f0d46d8de355e883cf67bd97";
-      sha256 = "0m102makrfz1ibxq8rx77nngjyhdqrm8hsrr9342zzhq1nf4wxxc";
+
+      # manage revision and sha256 with flakes
+      rev = zsh-plugin-syntax-highlight.rev;
+      sha256 = zsh-plugin-syntax-highlight.narHash;
     };
     file = "fast-syntax-highlighting.plugin.zsh";
   };
@@ -35,7 +32,7 @@ in
     initExtra = ''
     compdef g=git
 
-    for filename in $(find "${homeDir}/.zsh/config" -name '*.zsh' -or -name '*.sh'); do
+    for filename in $(find "${homeDirectory}/.zsh/config" -name '*.zsh' -or -name '*.sh'); do
       source "$filename"
     done
 
@@ -56,13 +53,13 @@ in
     # Nixpkgs installation (not NixOS)
     # source "${pkgs.nix}/etc/profile.d/nix.sh"
 
-    # export NIX_PATH="${homeDir}/.nix-defexpr/channels''${NIX_PATH:+:}''${NIX_PATH:-}"
+    # export NIX_PATH="${homeDirectory}/.nix-defexpr/channels''${NIX_PATH:+:}''${NIX_PATH:-}"
     # unset __HM_SESS_VARS_SOURCED
     # '';
 
     # envExtra = ''
     # # Nix-determined Environment variables
-    # source "${homeDir}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    # source "${homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh"
     # '';
   };
   programs.direnv.enableZshIntegration = true;

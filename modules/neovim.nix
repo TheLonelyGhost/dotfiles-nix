@@ -1,14 +1,6 @@
-{ system, config, lib, ... }:
+{ pkgs, lsp, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
-let
-  username = builtins.getEnv "USER";
-  homeDir = builtins.getEnv "HOME";
-
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-  lsp = (import (pkgs.fetchFromGitHub { inherit (sources.lsp-nix) owner repo rev sha256; })).outputs.packages."${builtins.currentSystem}";
-in
 {
   home.sessionVariables.EDITOR = "${pkgs.neovim-unwrapped}/bin/nvim";
   home.sessionVariables.VISUAL = "${pkgs.neovim-unwrapped}/bin/nvim";

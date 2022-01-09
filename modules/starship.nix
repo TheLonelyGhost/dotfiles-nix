@@ -1,16 +1,7 @@
-{ system, config, lib, ... }:
+{ pkgs, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
-let
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-in
 {
-  imports = [
-  ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
-    ./linux/starship.nix
-  ];
-
   programs.starship = {
     enable = true;
 

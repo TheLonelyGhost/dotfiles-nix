@@ -1,16 +1,10 @@
-{ system, config, lib, ... }:
+{ pkgs, workstation-deps, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
-let
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-
-  tag = (import (pkgs.fetchFromGitHub { inherit (sources.tag) owner repo rev sha256; })).outputs.defaultApp."${builtins.currentSystem}";
-in
 {
   home.packages = [
     pkgs.ripgrep
-    tag
+    workstation-deps.tag
   ];
 
   home.file.".ripgreprc".text = ''
@@ -24,6 +18,6 @@ in
   home.file.".zsh/config/tag.zsh".text = ''
   # TODO: Nix-ify this later
   export TAG_SEARCH_PROG='rg' # This must be 'rg' and not the absolute path, because of tag's limitations
-  tag() { ${tag}/bin/tag "$@"; source ''${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  tag() { ${workstation-deps.tag}/bin/tag "$@"; source ''${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
   '';
 }
