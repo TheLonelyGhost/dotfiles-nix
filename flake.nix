@@ -97,6 +97,7 @@
         devShell = pkgs.mkShell {
           buildInputs = [
             pkgs.bashInteractive
+            pkgs.gnumake
           ];
         };
       }
