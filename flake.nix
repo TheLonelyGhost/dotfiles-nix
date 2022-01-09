@@ -27,6 +27,7 @@
   outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, lsp, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
     let
       stateVersion = "21.11";
+      commitEmail = "opensource@thelonelyghost.com";
     in
     {
       homeConfigurations = {
@@ -72,7 +73,7 @@
             isWSL = true;
             isLinux = pkgs.stdenv.isLinux;
 
-            inherit system username homeDirectory;
+            inherit system username homeDirectory commitEmail;
             hostname = "DESKTOP-9R2I02I";
             windowsHome = "/mnt/c/Users/david";
 

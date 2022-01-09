@@ -1,4 +1,4 @@
-{ pkgs, homeDirectory, workstation-deps, ... }:
+{ pkgs, commitEmail, homeDirectory, workstation-deps, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
 {
@@ -19,7 +19,7 @@
     delta.enable = true;
 
     userName = "David Alexander";
-    userEmail = "opensource@thelonelyghost.com";
+    userEmail = commitEmail;
 
     aliases = {
       camend = "commit --amend --reuse-message HEAD";
