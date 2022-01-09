@@ -31,18 +31,31 @@
       pf = "push --force-with-lease";
 
       ls-tags = "tags --list -n1";
+
+      # git-log with diff
+      ld = "log --topo-order --stat --patch --full-diff --pretty=format:'%C(bold yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%C(reset)%n%C(bold yellow)Author:%C(reset) %C(cyan)%an <%ae>%C(reset)[%C(dim yellow)%GS%C(reset)|%C(green)%G?%C(reset)]%n%C(bold yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'";
+
+      lol = "log --graph --decorate --oneline";
+      lola = "log --graph --decorate --oneline --all";
     };
 
     extraConfig = {
-      init = {
-        defaultBranch = "main";
+      init.defaultBranch = "main";
+      ghq.root = "${homeDirectory}/workspace";
+      pull.rebase = true;
+
+      branch.master.rebase = true;
+      branch.main.rebase = true;
+
+      fetch.prune = true;
+
+      rebase = {
+        autoSquash = true;
+        autoStash = true;
       };
-      ghq = {
-        root = "${homeDirectory}/workspace";
-      };
-      pull = {
-        rebase = true;
-      };
+
+      rerere.enabled = true;
+      status.submodulesummary = true;
     };
 
     ignores = [
