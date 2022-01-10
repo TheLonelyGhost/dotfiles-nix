@@ -30,6 +30,9 @@ in
     };
 
     initExtra = ''
+    if [ -e "${homeDirectory}/.nix-profile/etc/profile.d/nix.sh" ]; then
+      . "${homeDirectory}/.nix-profile/etc/profile.d/nix.sh"
+    fi
     compdef g=git
 
     for filename in $(find "${homeDirectory}/.zsh/config" -name '*.zsh' -or -name '*.sh'); do

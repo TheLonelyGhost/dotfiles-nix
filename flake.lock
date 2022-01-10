@@ -333,11 +333,11 @@
         "tag": "tag"
       },
       "locked": {
-        "lastModified": 1641705283,
-        "narHash": "sha256-DHl+XkiJ5Sx7BG09ionPEkBcZBLHxVicgxKKXPFOSzE=",
+        "lastModified": 1641790559,
+        "narHash": "sha256-cFX6Py7Io/9s0b8+OHfb8B/LF8kZ/Zoeucob1C3KWbw=",
         "owner": "thelonelyghost",
         "repo": "workstation-deps-nix",
-        "rev": "afb84658d7ddd85ae8eb48f93456277ab5cacf02",
+        "rev": "2ff459cc91078968dbecf7b493076d6d0447d149",
         "type": "github"
       },
       "original": {
