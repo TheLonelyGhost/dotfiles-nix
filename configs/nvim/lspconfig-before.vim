@@ -2,6 +2,7 @@ lua <<EOH
 
 local nvim_lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 local on_attach = function(client, bufnr)
   lsp_status.register_progress()
@@ -16,7 +17,6 @@ local on_attach = function(client, bufnr)
     }
   )
 
-  require('completion').on_attach(client)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
@@ -71,89 +71,6 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
-local servers = {
-  "bashls",        -- Bash
-  -- "scry",          -- Crystal
-  "stylelint_lsp", -- CSS / SCSS
-  "dotls",         -- Graphviz (dot)
-  "dockerls",      -- Docker
-  "gopls",         -- Go
-  "html",          -- HTML
-  "jsonls",        -- JSON
-  "nimls",         -- Nim
-  "rnix",          -- Nix
-  "pyright",       -- Python
-  "solargraph",    -- Ruby
-  "rust_analyzer", -- Rust
-  "terraformls",   -- Terraform
-  "tsserver",      -- TypeScript
-  "vimls",         -- Vim
-  "yamlls",        -- YAML
-}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities
-  }
-end
+local capabilities = cmp_nvim_lsp.update_capabilities(lsp_status.capabilities)
 
-nvim_lsp.diagnosticls.setup {
-  on_attach = on_attach,
-  capabilities = lsp_status.capabilities,
-  cmd = {"diagnostic-languageserver", "--stdio"},
-  filetypes = {
-    "sh"
-  },
-  init_options = {
-    linters = {
-      shellcheck = {
-        command = "shellcheck",
-        debounce = 100,
-        args = {
-          "--format=json",
-          "-"
-        },
-        offsetLine = 0,
-        offsetColumn = 0,
-        sourceName = "shellcheck",
-        formatLines = 1,
-        parseJson = {
-          sourceName = "file",
-          -- sourceNameFilter = true,
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [SC${code}]",
-          security = "level"
-        },
-        securities = {
-          error = "error",
-          warning = "warning",
-          note = "info",
-          style = "hint"
-        }
-      }
-    },
-    filetypes = {
-      sh = "shellcheck"
-    }
-  }
-}
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = true,
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true
-  }
-)
-EOH
-
-" Handy stuff to display autocompletion, but not autoinsert
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c  " Skip entries related to insert completion menu events in `:messages`
