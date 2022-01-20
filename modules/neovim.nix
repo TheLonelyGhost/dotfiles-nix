@@ -41,7 +41,7 @@
       lsp.typescript-language-server
       lsp.vim-language-server
       lsp.vscode-langservers-extracted
-      pkgs.scry
+      lsp.scry
 
       lsp.gopls
       lsp.nim-language-server
@@ -194,7 +194,7 @@
         nvim_lsp.scry.setup {
           on_attach = on_attach,
           capabilities = capabilities,
-          cmd = { '${pkgs.scry}/bin/scry' },
+          cmd = { '${lsp.scry}/bin/scry' },
         }
 
         -- CSS / SCSS

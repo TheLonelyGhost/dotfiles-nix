@@ -202,11 +202,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1641593287,
-        "narHash": "sha256-atmarCs3rCTr39CjmImirfSvVXmn0mslp7/3gQ6P7S0=",
+        "lastModified": 1642660481,
+        "narHash": "sha256-3StO6VIQrGC2vzI/602C/vVzjW/hS7X4Llny8aN0T50=",
         "owner": "thelonelyghost",
         "repo": "lsp-nix",
-        "rev": "504b999ffe52a99ccd91abbb7778992154a2c572",
+        "rev": "33f7ed213d5e10054c55c1f354c97336484468b7",
         "type": "github"
       },
       "original": {
