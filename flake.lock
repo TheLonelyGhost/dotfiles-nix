@@ -162,11 +162,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1642638587,
-        "narHash": "sha256-CGP0EBJXx1wOaLcZrclhQOyN/TSUKVrkt3BiULPZEwI=",
+        "lastModified": 1642661174,
+        "narHash": "sha256-PZYMf/TyKEdtZYAcYNlkEhPya6y117Qo3gB3/D5/zxk=",
         "owner": "thelonelyghost",
         "repo": "golang-webdev-nix",
-        "rev": "510ed8f26ac8662d5c59b92be0e58c06f8d720c4",
+        "rev": "69c080aace52629c2157f5d60cfa9405972e0d09",
         "type": "github"
       },
       "original": {

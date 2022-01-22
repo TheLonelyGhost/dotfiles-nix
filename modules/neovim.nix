@@ -43,7 +43,7 @@
       lsp.vscode-langservers-extracted
       lsp.scry
 
-      lsp.gopls
+      lsp.gopls pkgs.go
       lsp.nim-language-server
       lsp.bash-language-server
       lsp.diagnostic-language-server
