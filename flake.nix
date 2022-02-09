@@ -31,6 +31,65 @@
     in
     {
       homeConfigurations = {
+        "thelonelyghost@TLG-DESKTOP" = home-manager.lib.homeManagerConfiguration (let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+
+          system = "x86_64-linux";
+          username = "thelonelyghost";
+          homeDirectory = "/home/thelonelyghost";
+        in
+        {
+          configuration = { pkgs, homeDirectory, ... }: {
+            programs.home-manager.enable = true;
+
+            imports = [
+              ./modules/dev-cli.nix
+              ./modules/direnv.nix
+              ./modules/neovim.nix
+              ./modules/neovim-plugins/nvim-lsp.nix
+              ./modules/neovim-plugins/treesitter.nix
+              ./modules/neovim-plugins/syntax.nix
+              ./modules/neovim-plugins/theme.nix
+              ./modules/git.nix
+              ./modules/golang.nix
+              ./modules/gpg.nix
+              ./modules/ripgrep.nix
+              ./modules/ssh.nix
+              ./modules/wsl/ssh-agent.nix
+              ./modules/starship.nix
+              ./modules/linux/starship.nix
+              ./modules/tmux.nix
+              ./modules/zsh.nix
+            ];
+
+            home.sessionPath = [
+              "${homeDirectory}/.local/bin"
+            ];
+
+          };
+
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            isWSL = true;
+            isLinux = pkgs.stdenv.isLinux;
+
+            inherit system username homeDirectory commitEmail;
+            hostname = "DESKTOP-9R2I02I";
+            windowsHome = "/mnt/c/Users/thelonelyghost";
+
+            lsp = lsp.outputs.packages."x86_64-linux";
+            workstation-deps = workstation-deps.packages."x86_64-linux";
+            golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
+            inherit zsh-plugin-syntax-highlight;
+          };
+
+          inherit stateVersion system username homeDirectory;
+        });
+
         "thelonelyghost@DESKTOP-9R2I02I" = home-manager.lib.homeManagerConfiguration (let
           pkgs = import nixpkgs {
             inherit system;
