@@ -49,10 +49,6 @@
               ./modules/dev-cli.nix
               ./modules/direnv.nix
               ./modules/neovim.nix
-              ./modules/neovim-plugins/nvim-lsp.nix
-              ./modules/neovim-plugins/treesitter.nix
-              ./modules/neovim-plugins/syntax.nix
-              ./modules/neovim-plugins/theme.nix
               ./modules/git.nix
               ./modules/golang.nix
               ./modules/gpg.nix
