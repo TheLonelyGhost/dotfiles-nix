@@ -3,6 +3,7 @@
 
 {
   home.packages = [
+    pkgs.go
     golang-webdev.buffalo
     golang-webdev.buffalo-plugin-heroku
   ];
