@@ -1,4 +1,4 @@
-{ pkgs, commitEmail, homeDirectory, workstation-deps, ... }:
+{ pkgs, commitEmail, neovim, homeDirectory, workstation-deps, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
 {
@@ -10,7 +10,7 @@
 
   programs.gh = {
     enable = true;
-    settings.editor = "${pkgs.neovim-unwrapped}/bin/nvim";
+    settings.editor = "${neovim.neovim}/bin/nvim";
     settings.git_protocol = "ssh";
   };
 

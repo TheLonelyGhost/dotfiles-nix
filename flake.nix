@@ -14,7 +14,7 @@
       flake = false;
     };
 
-    lsp.url = "github:thelonelyghost/lsp-nix";
+    neovim-nix.url = "github:thelonelyghost/neovim-nix";
     workstation-deps.url = "github:thelonelyghost/workstation-deps-nix";
     golang-webdev.url = "github:thelonelyghost/golang-webdev-nix";
 
@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, lsp, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
+  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, neovim-nix, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
     let
       stateVersion = "21.11";
       commitEmail = "opensource@thelonelyghost.com";
@@ -77,7 +77,7 @@
             hostname = "DESKTOP-9R2I02I";
             windowsHome = "/mnt/c/Users/thelonelyghost";
 
-            lsp = lsp.outputs.packages."x86_64-linux";
+            neovim = neovim-nix.packages."x86_64-linux";
             workstation-deps = workstation-deps.packages."x86_64-linux";
             golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
             inherit zsh-plugin-syntax-highlight;
@@ -116,6 +116,10 @@
               ./modules/zsh.nix
             ];
 
+            home.packages = [
+              pkgs.flyctl
+            ];
+
             home.sessionPath = [
               "${homeDirectory}/.local/bin"
             ];
@@ -132,7 +136,7 @@
             hostname = "DESKTOP-9R2I02I";
             windowsHome = "/mnt/c/Users/david";
 
-            lsp = lsp.outputs.packages."x86_64-linux";
+            neovim = neovim-nix.packages."x86_64-linux";
             workstation-deps = workstation-deps.packages."x86_64-linux";
             golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
             inherit zsh-plugin-syntax-highlight;
