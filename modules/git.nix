@@ -6,6 +6,7 @@
     pkgs.ghq
     workstation-deps.g
     workstation-deps.git-ignore
+    workstation-deps.git-credential-keepassxc
   ];
 
   programs.gh = {
@@ -56,6 +57,8 @@
 
       rerere.enabled = true;
       status.submodulesummary = true;
+
+      credential.helper = "${workstation-deps.git-credential-keepassxc}/bin/git-credential-keepassxc";
     };
 
     ignores = [

@@ -6,7 +6,7 @@
     pkgs.coreutils
     # pkgs.niv
     workstation-deps.flakify
-    # workstation-deps.nixify
+    workstation-deps.keepassxc-get
   ];
 
   programs.bat = {
