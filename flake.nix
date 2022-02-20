@@ -31,119 +31,129 @@
     in
     {
       homeConfigurations = {
-        "thelonelyghost@TLG-DESKTOP" = home-manager.lib.homeManagerConfiguration (let
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
+        "thelonelyghost@TLG-DESKTOP" = home-manager.lib.homeManagerConfiguration (
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
 
-          system = "x86_64-linux";
-          username = "thelonelyghost";
-          homeDirectory = "/home/thelonelyghost";
-        in
-        {
-          configuration = { pkgs, homeDirectory, ... }: {
-            programs.home-manager.enable = true;
+            windowsUsername = "thelonelyghost";
 
-            imports = [
-              ./modules/dev-cli.nix
-              ./modules/direnv.nix
-              ./modules/neovim.nix
-              ./modules/git.nix
-              ./modules/golang.nix
-              ./modules/gpg.nix
-              ./modules/ripgrep.nix
-              ./modules/ssh.nix
-              ./modules/wsl/ssh-agent.nix
-              ./modules/starship.nix
-              ./modules/linux/starship.nix
-              ./modules/tmux.nix
-              ./modules/zsh.nix
-            ];
+            system = "x86_64-linux";
+            username = "thelonelyghost";
+            homeDirectory = "/home/thelonelyghost";
+          in
+          {
+            configuration = { pkgs, homeDirectory, ... }: {
+              programs.home-manager.enable = true;
 
-            home.sessionPath = [
-              "${homeDirectory}/.local/bin"
-            ];
+              imports = [
+                ./modules/dev-cli.nix
+                ./modules/direnv.nix
+                ./modules/neovim.nix
+                ./modules/git.nix
+                ./modules/golang.nix
+                ./modules/gpg.nix
+                ./modules/ripgrep.nix
+                ./modules/ssh.nix
+                ./modules/wsl/ssh-agent.nix
+                ./modules/wsl/keepassxc.nix
+                ./modules/starship.nix
+                ./modules/linux/starship.nix
+                ./modules/tmux.nix
+                ./modules/zsh.nix
+              ];
 
-          };
+              home.sessionPath = [
+                "${homeDirectory}/.local/bin"
+              ];
 
-          inherit pkgs;
+            };
 
-          extraSpecialArgs = {
-            isWSL = true;
-            isLinux = pkgs.stdenv.isLinux;
+            inherit pkgs;
 
-            inherit system username homeDirectory commitEmail;
-            hostname = "DESKTOP-9R2I02I";
-            windowsHome = "/mnt/c/Users/thelonelyghost";
+            extraSpecialArgs = {
+              isWSL = true;
+              isLinux = pkgs.stdenv.isLinux;
 
-            neovim = neovim-nix.packages."x86_64-linux";
-            workstation-deps = workstation-deps.packages."x86_64-linux";
-            golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
-            inherit zsh-plugin-syntax-highlight;
-          };
+              inherit system username homeDirectory commitEmail windowsUsername;
+              hostname = "TLG-DESKTOP";
+              windowsHome = "/mnt/c/Users/${windowsUsername}";
 
-          inherit stateVersion system username homeDirectory;
-        });
+              neovim = neovim-nix.packages."x86_64-linux";
+              workstation-deps = workstation-deps.packages."x86_64-linux";
+              golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
+              inherit zsh-plugin-syntax-highlight;
+            };
 
-        "thelonelyghost@DESKTOP-9R2I02I" = home-manager.lib.homeManagerConfiguration (let
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
+            inherit stateVersion system username homeDirectory;
+          }
+        );
 
-          system = "x86_64-linux";
-          username = "thelonelyghost";
-          homeDirectory = "/home/thelonelyghost";
-        in
-        {
-          configuration = { pkgs, homeDirectory, ... }: {
-            programs.home-manager.enable = true;
+        "thelonelyghost@DESKTOP-9R2I02I" = home-manager.lib.homeManagerConfiguration (
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
 
-            imports = [
-              ./modules/dev-cli.nix
-              ./modules/direnv.nix
-              ./modules/neovim.nix
-              ./modules/git.nix
-              ./modules/golang.nix
-              ./modules/gpg.nix
-              ./modules/ripgrep.nix
-              ./modules/ssh.nix
-              ./modules/wsl/ssh-agent.nix
-              ./modules/starship.nix
-              ./modules/linux/starship.nix
-              ./modules/tmux.nix
-              ./modules/zsh.nix
-            ];
+            windowsUsername = "david";
 
-            home.packages = [
-              pkgs.flyctl
-            ];
+            system = "x86_64-linux";
+            username = "thelonelyghost";
+            homeDirectory = "/home/thelonelyghost";
+          in
+          {
+            configuration = { pkgs, homeDirectory, ... }: {
+              programs.home-manager.enable = true;
 
-            home.sessionPath = [
-              "${homeDirectory}/.local/bin"
-            ];
+              imports = [
+                ./modules/dev-cli.nix
+                ./modules/direnv.nix
+                ./modules/neovim.nix
+                ./modules/git.nix
+                ./modules/golang.nix
+                ./modules/gpg.nix
+                ./modules/ripgrep.nix
+                ./modules/ssh.nix
+                ./modules/wsl/ssh-agent.nix
+                ./modules/wsl/keepassxc.nix
+                ./modules/starship.nix
+                ./modules/linux/starship.nix
+                ./modules/tmux.nix
+                ./modules/zsh.nix
+              ];
 
-          };
+              home.packages = [
+                pkgs.flyctl
+              ];
 
-          inherit pkgs;
+              home.sessionPath = [
+                "${homeDirectory}/.local/bin"
+              ];
 
-          extraSpecialArgs = {
-            isWSL = true;
-            isLinux = pkgs.stdenv.isLinux;
+            };
 
-            inherit system username homeDirectory commitEmail;
-            hostname = "DESKTOP-9R2I02I";
-            windowsHome = "/mnt/c/Users/david";
+            inherit pkgs;
 
-            neovim = neovim-nix.packages."x86_64-linux";
-            workstation-deps = workstation-deps.packages."x86_64-linux";
-            golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
-            inherit zsh-plugin-syntax-highlight;
-          };
+            extraSpecialArgs = {
+              isWSL = true;
+              isLinux = pkgs.stdenv.isLinux;
 
-          inherit stateVersion system username homeDirectory;
-        });
+              inherit system username homeDirectory commitEmail windowsUsername;
+              hostname = "DESKTOP-9R2I02I";
+              windowsHome = "/mnt/c/Users/${windowsUsername}";
+
+              neovim = neovim-nix.packages."x86_64-linux";
+              workstation-deps = workstation-deps.packages."x86_64-linux";
+              golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
+              inherit zsh-plugin-syntax-highlight;
+            };
+
+            inherit stateVersion system username homeDirectory;
+          }
+        );
       };
     } // (flake-utils.lib.eachDefaultSystem (system:
       let
