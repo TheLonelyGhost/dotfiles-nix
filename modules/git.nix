@@ -1,4 +1,4 @@
-{ pkgs, commitEmail, neovim, homeDirectory, workstation-deps, ... }:
+{ pkgs, fullName, commitEmail, neovim, homeDirectory, workstation-deps, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
 {
@@ -19,7 +19,7 @@
     enable = true;
     delta.enable = true;
 
-    userName = "David Alexander";
+    userName = fullName;
     userEmail = commitEmail;
 
     aliases = {

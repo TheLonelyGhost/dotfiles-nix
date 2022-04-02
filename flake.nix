@@ -27,7 +27,6 @@
   outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, neovim-nix, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
     let
       stateVersion = "21.11";
-      commitEmail = "opensource@thelonelyghost.com";
     in
     {
       homeConfigurations = {
@@ -38,11 +37,15 @@
               config.allowUnfree = true;
             };
 
-            windowsUsername = "thelonelyghost";
+            fullName = "David Alexander";
+            commitEmail = "opensource@thelonelyghost.com";
 
             system = "x86_64-linux";
+            hostname = "TLG-DESKTOP";
             username = "thelonelyghost";
-            homeDirectory = "/home/thelonelyghost";
+            homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+
+            windowsUsername = "thelonelyghost";
           in
           {
             configuration = { pkgs, homeDirectory, ... }: {
@@ -74,16 +77,15 @@
             inherit pkgs;
 
             extraSpecialArgs = {
-              isWSL = true;
-              isLinux = pkgs.stdenv.isLinux;
+              isWSL = windowsUsername != "";
+              inherit (pkgs.stdenv) isLinux isDarwin;
 
-              inherit system username homeDirectory commitEmail windowsUsername;
-              hostname = "TLG-DESKTOP";
-              windowsHome = "/mnt/c/Users/${windowsUsername}";
+              inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
+              windowsHome = if windowsUsername != "" then "/mnt/c/Users/${windowsUsername}" else "";
 
-              neovim = neovim-nix.packages."x86_64-linux";
-              workstation-deps = workstation-deps.packages."x86_64-linux";
-              golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
+              neovim = neovim-nix.packages."${system}";
+              workstation-deps = workstation-deps.packages."${system}";
+              golang-webdev = golang-webdev.outputs.packages."${system}";
               inherit zsh-plugin-syntax-highlight;
             };
 
@@ -98,11 +100,15 @@
               config.allowUnfree = true;
             };
 
-            windowsUsername = "david";
+            fullName = "David Alexander";
+            commitEmail = "opensource@thelonelyghost.com";
 
             system = "x86_64-linux";
+            hostname = "DESKTOP-9R2I02I";
             username = "thelonelyghost";
-            homeDirectory = "/home/thelonelyghost";
+            homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+
+            windowsUsername = "david";
           in
           {
             configuration = { pkgs, homeDirectory, ... }: {
@@ -138,16 +144,15 @@
             inherit pkgs;
 
             extraSpecialArgs = {
-              isWSL = true;
-              isLinux = pkgs.stdenv.isLinux;
+              isWSL = windowsUsername != "";
+              inherit (pkgs.stdenv) isLinux isDarwin;
 
-              inherit system username homeDirectory commitEmail windowsUsername;
-              hostname = "DESKTOP-9R2I02I";
-              windowsHome = "/mnt/c/Users/${windowsUsername}";
+              inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
+              windowsHome = if windowsUsername != "" then "/mnt/c/Users/${windowsUsername}" else "";
 
-              neovim = neovim-nix.packages."x86_64-linux";
-              workstation-deps = workstation-deps.packages."x86_64-linux";
-              golang-webdev = golang-webdev.outputs.packages."x86_64-linux";
+              neovim = neovim-nix.packages."${system}";
+              workstation-deps = workstation-deps.packages."${system}";
+              golang-webdev = golang-webdev.outputs.packages."${system}";
               inherit zsh-plugin-syntax-highlight;
             };
 

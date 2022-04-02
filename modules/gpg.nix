@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, isDarwin, ... }:
 # vim: ts=2 sts=2 sw=2 et
 
 {
@@ -7,7 +7,7 @@
   };
 
   services.gpg-agent = {
-    enable = true;
+    enable = !isDarwin;
     pinentryFlavor = "tty";
   };
 
