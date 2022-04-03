@@ -133,6 +133,7 @@
 
               home.packages = [
                 pkgs.flyctl
+                pkgs.nix-doc
               ];
 
               home.sessionPath = [
