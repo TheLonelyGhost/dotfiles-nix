@@ -254,11 +254,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1646410864,
-        "narHash": "sha256-X+rq1fyye2cTABKnm/BUKzlomczqQ3qpvHGy3s9I9mA=",
+        "lastModified": 1649009857,
+        "narHash": "sha256-Iildma1MjCjptljHT0wFZ8lPIH12Ts5YBqMhrDsGqck=",
         "owner": "thelonelyghost",
         "repo": "neovim-nix",
-        "rev": "f988af0c085267e9cb0b166440ff45f1299f6e0a",
+        "rev": "f374349c946119d2de2314f28a0bba895b1f46c7",
         "type": "github"
       },
       "original": {
