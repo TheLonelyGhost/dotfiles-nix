@@ -14,19 +14,44 @@
       flake = false;
     };
 
-    neovim-nix.url = "github:thelonelyghost/neovim-nix";
-    workstation-deps.url = "github:thelonelyghost/workstation-deps-nix";
-    golang-webdev.url = "github:thelonelyghost/golang-webdev-nix";
-
-    zsh-plugin-syntax-highlight = {
-      url = "github:zdharma-continuum/fast-syntax-highlighting";
-      flake = false;
-    };
+    hm-modules-nix.url = "github:thelonelyghost/hm-modules-nix";
+    hm-modules-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, neovim-nix, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
+  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, hm-modules-nix }:
     let
       stateVersion = "21.11";
+      baseConfig = { pkgs, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }: let
+        system = pkgs.system;
+        hm-modules = hm-modules-nix.packages."${system}";
+      in {
+        configuration = { pkgs, homeDirectory, ... }: {
+          programs.home-manager.enable = true;
+
+          imports = [
+            hm-modules.base-cli
+            hm-modules.direnv
+            hm-modules.git
+            hm-modules.golang
+            hm-modules.gpg
+            hm-modules.keepassxc
+            hm-modules.neovim
+            hm-modules.ripgrep
+            hm-modules.ssh
+            hm-modules.starship
+            hm-modules.tmux
+            hm-modules.zsh
+          ];
+        };
+
+        inherit pkgs;
+
+        extraSpecialArgs = hm-modules.extraSpecialArgs {
+          inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
+        };
+
+        inherit stateVersion system username homeDirectory;
+      };
     in
     {
       homeConfigurations = {
@@ -43,53 +68,12 @@
             system = "x86_64-linux";
             hostname = "TLG-DESKTOP";
             username = "thelonelyghost";
-            homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+            homeDirectory = "/home/${username}";
 
             windowsUsername = "thelonelyghost";
           in
-          {
-            configuration = { pkgs, homeDirectory, ... }: {
-              programs.home-manager.enable = true;
-
-              imports = [
-                ./modules/dev-cli.nix
-                ./modules/direnv.nix
-                ./modules/neovim.nix
-                ./modules/git.nix
-                ./modules/golang.nix
-                ./modules/gpg.nix
-                ./modules/ripgrep.nix
-                ./modules/ssh.nix
-                ./modules/wsl/ssh-agent.nix
-                ./modules/wsl/keepassxc.nix
-                ./modules/starship.nix
-                ./modules/linux/starship.nix
-                ./modules/tmux.nix
-                ./modules/zsh.nix
-              ];
-
-              home.sessionPath = [
-                "${homeDirectory}/.local/bin"
-              ];
-
-            };
-
-            inherit pkgs;
-
-            extraSpecialArgs = {
-              isWSL = windowsUsername != "";
-              inherit (pkgs.stdenv) isLinux isDarwin;
-
-              inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
-              windowsHome = if windowsUsername != "" then "/mnt/c/Users/${windowsUsername}" else "";
-
-              neovim = neovim-nix.packages."${system}";
-              workstation-deps = workstation-deps.packages."${system}";
-              golang-webdev = golang-webdev.outputs.packages."${system}";
-              inherit zsh-plugin-syntax-highlight;
-            };
-
-            inherit stateVersion system username homeDirectory;
+          baseConfig {
+            inherit pkgs fullName commitEmail hostname username homeDirectory windowsUsername;
           }
         );
 
@@ -106,58 +90,12 @@
             system = "x86_64-linux";
             hostname = "DESKTOP-9R2I02I";
             username = "thelonelyghost";
-            homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+            homeDirectory = "/home/${username}";
 
             windowsUsername = "david";
           in
-          {
-            configuration = { pkgs, homeDirectory, ... }: {
-              programs.home-manager.enable = true;
-
-              imports = [
-                ./modules/dev-cli.nix
-                ./modules/direnv.nix
-                ./modules/neovim.nix
-                ./modules/git.nix
-                ./modules/golang.nix
-                ./modules/gpg.nix
-                ./modules/ripgrep.nix
-                ./modules/ssh.nix
-                ./modules/wsl/ssh-agent.nix
-                ./modules/wsl/keepassxc.nix
-                ./modules/starship.nix
-                ./modules/linux/starship.nix
-                ./modules/tmux.nix
-                ./modules/zsh.nix
-              ];
-
-              home.packages = [
-                pkgs.flyctl
-                pkgs.nix-doc
-              ];
-
-              home.sessionPath = [
-                "${homeDirectory}/.local/bin"
-              ];
-
-            };
-
-            inherit pkgs;
-
-            extraSpecialArgs = {
-              isWSL = windowsUsername != "";
-              inherit (pkgs.stdenv) isLinux isDarwin;
-
-              inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
-              windowsHome = if windowsUsername != "" then "/mnt/c/Users/${windowsUsername}" else "";
-
-              neovim = neovim-nix.packages."${system}";
-              workstation-deps = workstation-deps.packages."${system}";
-              golang-webdev = golang-webdev.outputs.packages."${system}";
-              inherit zsh-plugin-syntax-highlight;
-            };
-
-            inherit stateVersion system username homeDirectory;
+          baseConfig {
+            inherit pkgs fullName commitEmail hostname username homeDirectory windowsUsername;
           }
         );
       };
