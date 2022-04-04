@@ -251,11 +251,11 @@
         "zsh-plugin-syntax-highlight": "zsh-plugin-syntax-highlight"
       },
       "locked": {
-        "lastModified": 1649042015,
-        "narHash": "sha256-kKPeFiW4ypCXlflZQ4IUiWa8PJDWvctocVO6Nr6wKwE=",
+        "lastModified": 1649045215,
+        "narHash": "sha256-qyPwZOtFugQzjqwEDEM6/yS5fhfr2n/JAQfeZkuqmDU=",
         "owner": "thelonelyghost",
         "repo": "hm-modules-nix",
-        "rev": "719b879ab057de1745f09672563e785e80682169",
+        "rev": "275a7d659a037d538bb7b7e85237edf55e9b924a",
         "type": "github"
       },
       "original": {
@@ -488,11 +488,11 @@
         "tag": "tag"
       },
       "locked": {
-        "lastModified": 1649041511,
-        "narHash": "sha256-NQc34koCHHFg7g16GP/m5SpwOyMIluNInc/muME/W8M=",
+        "lastModified": 1649045173,
+        "narHash": "sha256-D0wdcv86OYc79YsFqwE71cLlJfEEsC4nkypYXXW6EJw=",
         "owner": "thelonelyghost",
         "repo": "workstation-deps-nix",
-        "rev": "362e063e9724f114ed5a25863e560cdbd4c8d2f6",
+        "rev": "072f85d0d4d8ba808324f67974e4ec967647223c",
         "type": "github"
       },
       "original": {
