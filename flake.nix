@@ -25,7 +25,7 @@
         system = pkgs.system;
         hm-modules = hm-modules-nix.packages."${system}";
       in {
-        configuration = { pkgs, homeDirectory, ... }: {
+        configuration = { ... }: {
           programs.home-manager.enable = true;
 
           imports = [
