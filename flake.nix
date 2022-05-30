@@ -3,16 +3,13 @@
 
   inputs = {
     nixpkgs.url = "flake:nixpkgs";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
+    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-compat.flake = false;
 
     hm-modules-nix.url = "github:thelonelyghost/hm-modules-nix";
     hm-modules-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -21,37 +18,47 @@
   outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, hm-modules-nix }:
     let
       stateVersion = "21.11";
-      baseConfig = { pkgs, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }: let
-        system = pkgs.system;
-        hm-modules = hm-modules-nix.packages."${system}";
-      in {
-        configuration = { ... }: {
-          programs.home-manager.enable = true;
+      baseConfig = { pkgs, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }:
+        let
+          system = pkgs.system;
+          hm-modules = hm-modules-nix.packages."${system}";
+        in
+        {
+          configuration = { pkgs, ... }: {
+            programs.home-manager.enable = true;
 
-          imports = [
-            hm-modules.base-cli
-            hm-modules.direnv
-            hm-modules.git
-            hm-modules.golang
-            hm-modules.gpg
-            hm-modules.keepassxc
-            hm-modules.neovim
-            hm-modules.ripgrep
-            hm-modules.ssh
-            hm-modules.starship
-            hm-modules.tmux
-            hm-modules.zsh
-          ];
+            imports = [
+              hm-modules.base-cli
+              hm-modules.direnv
+              hm-modules.git
+              hm-modules.golang
+              hm-modules.gpg
+              hm-modules.keepassxc
+              hm-modules.neovim
+              hm-modules.ripgrep
+              hm-modules.ssh
+              hm-modules.starship
+              hm-modules.tmux
+              hm-modules.zsh
+
+              # TODO:
+              # hm-modules.taskwarrior
+            ];
+
+            # TODO: Investigate later
+            home.packages = [
+              # pkgs.csvkit
+            ];
+          };
+
+          inherit pkgs;
+
+          extraSpecialArgs = hm-modules.extraSpecialArgs {
+            inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
+          };
+
+          inherit stateVersion system username homeDirectory;
         };
-
-        inherit pkgs;
-
-        extraSpecialArgs = hm-modules.extraSpecialArgs {
-          inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
-        };
-
-        inherit stateVersion system username homeDirectory;
-      };
     in
     {
       homeConfigurations = {
