@@ -251,11 +251,11 @@
         "zsh-plugin-syntax-highlight": "zsh-plugin-syntax-highlight"
       },
       "locked": {
-        "lastModified": 1653885165,
-        "narHash": "sha256-1jMtlM8sdNfVpszQUTCghRspQVG96eHgqZmQx4r8RAg=",
+        "lastModified": 1653889203,
+        "narHash": "sha256-sOC0cKrhLwGEe0GP0uUa+1D4PNJ8GYRpn9S8pBMRVx4=",
         "owner": "thelonelyghost",
         "repo": "hm-modules-nix",
-        "rev": "a18064897137c41516f5868bd7ff0b366b26d266",
+        "rev": "b6e20b2cf3a892e65f6ed7f42fee93817372e509",
         "type": "github"
       },
       "original": {
@@ -330,11 +330,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1653884582,
-        "narHash": "sha256-TPZbw8g0dgN/Qa0oniMrCewJDlKU1iuulHB/B6fpPyc=",
+        "lastModified": 1653889066,
+        "narHash": "sha256-bj8gy/dYdy9tRIDvgsM+KzoXRRzVo5dgI70/yWsX+Kg=",
         "owner": "thelonelyghost",
         "repo": "neovim-nix",
-        "rev": "2b9843af8ef3c207721e477dc7053366712c3166",
+        "rev": "8da67e6963121dcd363ca0a13e34d77fea20eafb",
         "type": "github"
       },
       "original": {
