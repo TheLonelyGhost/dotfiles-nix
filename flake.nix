@@ -7,69 +7,32 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-compat.flake = false;
 
-    hm-modules-nix.url = "github:thelonelyghost/hm-modules-nix";
-    hm-modules-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # neovim.url = "path:/home/thelonelyghost/workspace/github.com/thelonelyghost/neovim-nix";
+    neovim.url = "github:thelonelyghost/neovim-nix";
+    workstation-deps.url = "github:thelonelyghost/workstation-deps-nix";
+    golang-webdev.url = "github:thelonelyghost/golang-webdev-nix";
+
+    zsh-plugin-syntax-highlight.url = "github:zdharma-continuum/fast-syntax-highlighting";
+    zsh-plugin-syntax-highlight.flake = false;
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, hm-modules-nix }:
+  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, neovim, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
     let
-      baseConfig = { pkgs, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }:
-        let
-          system = pkgs.system;
-          hm-modules = hm-modules-nix.packages."${system}";
-        in
-        {
-
-          modules = [
-            {
-              programs.home-manager.enable = true;
-
-              home = {
-                inherit username homeDirectory;
-                stateVersion = "22.11";
-
-                # TODO: Investigate later
-                packages = [
-                  # pkgs.csvkit
-                ];
-              };
-            }
-            hm-modules.base-cli
-            hm-modules.direnv
-            hm-modules.git
-            hm-modules.golang
-            hm-modules.gpg
-            hm-modules.keepassxc
-            hm-modules.neovim
-            hm-modules.ripgrep
-            hm-modules.ssh
-            hm-modules.starship
-            hm-modules.tmux
-            hm-modules.zsh
-            # TODO:
-            # hm-modules.taskwarrior
-          ];
-
-          inherit pkgs;
-
-          extraSpecialArgs = hm-modules.extraSpecialArgs {
-            inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
-          };
-        };
+      baseConfig = import ./baseConfig.nix {
+        /* Flakes that need resolving per system */
+        inherit nixpkgs home-manager flake-compat flake-utils neovim workstation-deps golang-webdev;
+      } {
+        /* Non-Flake flakes */
+        inherit zsh-plugin-syntax-highlight;
+      };
     in
     {
       homeConfigurations = {
         "thelonelyghost@TLG-DESKTOP" = home-manager.lib.homeManagerConfiguration (
           let
-            pkgs = import nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-            };
-
             fullName = "David Alexander";
             commitEmail = "opensource@thelonelyghost.com";
 
@@ -81,17 +44,12 @@
             windowsUsername = "thelonelyghost";
           in
           baseConfig {
-            inherit pkgs fullName commitEmail hostname username homeDirectory windowsUsername;
+            inherit system fullName commitEmail hostname username homeDirectory windowsUsername;
           }
         );
 
         "thelonelyghost@DESKTOP-9R2I02I" = home-manager.lib.homeManagerConfiguration (
           let
-            pkgs = import nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-            };
-
             fullName = "David Alexander";
             commitEmail = "opensource@thelonelyghost.com";
 
@@ -103,7 +61,7 @@
             windowsUsername = "david";
           in
           baseConfig {
-            inherit pkgs fullName commitEmail hostname username homeDirectory windowsUsername;
+            inherit system fullName commitEmail hostname username homeDirectory windowsUsername;
           }
         );
       };
