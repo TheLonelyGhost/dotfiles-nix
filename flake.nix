@@ -17,47 +17,48 @@
 
   outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, hm-modules-nix }:
     let
-      stateVersion = "21.11";
       baseConfig = { pkgs, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }:
         let
           system = pkgs.system;
           hm-modules = hm-modules-nix.packages."${system}";
         in
         {
-          configuration = { pkgs, ... }: {
-            programs.home-manager.enable = true;
 
-            imports = [
-              hm-modules.base-cli
-              hm-modules.direnv
-              hm-modules.git
-              hm-modules.golang
-              hm-modules.gpg
-              hm-modules.keepassxc
-              hm-modules.neovim
-              hm-modules.ripgrep
-              hm-modules.ssh
-              hm-modules.starship
-              hm-modules.tmux
-              hm-modules.zsh
+          modules = [
+            {
+              programs.home-manager.enable = true;
 
-              # TODO:
-              # hm-modules.taskwarrior
-            ];
+              home = {
+                inherit username homeDirectory;
+                stateVersion = "22.11";
 
-            # TODO: Investigate later
-            home.packages = [
-              # pkgs.csvkit
-            ];
-          };
+                # TODO: Investigate later
+                packages = [
+                  # pkgs.csvkit
+                ];
+              };
+            }
+            hm-modules.base-cli
+            hm-modules.direnv
+            hm-modules.git
+            hm-modules.golang
+            hm-modules.gpg
+            hm-modules.keepassxc
+            hm-modules.neovim
+            hm-modules.ripgrep
+            hm-modules.ssh
+            hm-modules.starship
+            hm-modules.tmux
+            hm-modules.zsh
+            # TODO:
+            # hm-modules.taskwarrior
+          ];
 
           inherit pkgs;
 
           extraSpecialArgs = hm-modules.extraSpecialArgs {
             inherit system hostname username homeDirectory fullName commitEmail windowsUsername;
           };
-
-          inherit stateVersion system username homeDirectory;
         };
     in
     {
