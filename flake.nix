@@ -3,27 +3,36 @@
 
   inputs = {
     nixpkgs.url = "flake:nixpkgs";
+    overlays.url = "github:thelonelyghost/blank-overlay-nix";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "flake:flake-utils";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-compat.flake = false;
 
-    # neovim.url = "path:/home/thelonelyghost/workspace/github.com/thelonelyghost/neovim-nix";
     neovim.url = "github:thelonelyghost/neovim-nix";
+    neovim.inputs.flake-utils.follows = "flake-utils";
+    neovim.inputs.flake-compat.follows = "flake-compat";
+    neovim.inputs.overlays.follows = "overlays";
     workstation-deps.url = "github:thelonelyghost/workstation-deps-nix";
+    workstation-deps.inputs.flake-utils.follows = "flake-utils";
+    workstation-deps.inputs.flake-compat.follows = "flake-compat";
+    workstation-deps.inputs.overlays.follows = "overlays";
     golang-webdev.url = "github:thelonelyghost/golang-webdev-nix";
+    golang-webdev.inputs.flake-utils.follows = "flake-utils";
+    golang-webdev.inputs.flake-compat.follows = "flake-compat";
+    golang-webdev.inputs.overlays.follows = "overlays";
 
     zsh-plugin-syntax-highlight.url = "github:zdharma-continuum/fast-syntax-highlighting";
     zsh-plugin-syntax-highlight.flake = false;
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, neovim, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
+  outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, overlays, neovim, workstation-deps, golang-webdev, zsh-plugin-syntax-highlight }:
     let
       baseConfig = import ./baseConfig.nix {
         /* Flakes that need resolving per system */
-        inherit nixpkgs home-manager flake-compat flake-utils neovim workstation-deps golang-webdev;
+        inherit nixpkgs home-manager flake-compat flake-utils neovim workstation-deps golang-webdev overlays;
       } {
         /* Non-Flake flakes */
         inherit zsh-plugin-syntax-highlight;

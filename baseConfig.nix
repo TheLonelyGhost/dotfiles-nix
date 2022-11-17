@@ -10,6 +10,7 @@ let
   pkgs = import flakes.nixpkgs {
     inherit system;
     config.allowUnfree = true;
+    overlays = [flakes.overlays.overlays.default];
   };
   neovim = flakes.neovim.packages."${system}";
   workstation-deps = flakes.workstation-deps.packages."${system}";
