@@ -38,9 +38,10 @@ in
     fi
     compdef g=git
 
-    for filename in $(find "${homeDirectory}/.zsh/config" -name '*.zsh' -or -name '*.sh'); do
+    while read -r filename; do
+      if [ -z "$filename" ]; then continue; fi
       source "$filename"
-    done
+    done < <(find "${homeDirectory}/.zsh/config" -name '*.zsh' -or -name '*.sh')
 
     setopt MARK_DIRS
     setopt INTERACTIVE_COMMENTS
