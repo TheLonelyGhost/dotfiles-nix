@@ -79,7 +79,7 @@
       {
         # This is a placeholder for anything helpful when developing the flake:
         devShell = pkgs.mkShell {
-          buildInputs = [
+          nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
           ];
