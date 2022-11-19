@@ -168,18 +168,16 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1641463613,
-        "narHash": "sha256-xZN9igqdZvnhSeTx8OlGby/OaYQHwgXVrBrPW0gLEh8=",
+        "lastModified": 1668793589,
+        "narHash": "sha256-R46LmO8VWjYjaeGBKjBL1zmvB1ziO5mtv0fJzkNbXiY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "77fda7f672726e1a95c8cd200f27bccfc86c870b",
+        "rev": "4c80e3665c019daaa91347fbcb4e5ae078cc39d3",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "overlays": {
@@ -217,7 +215,7 @@
         ],
         "flake-utils": [
           "workstation-deps",
-          "flake-compat"
+          "flake-utils"
         ],
         "nixpkgs": [
           "workstation-deps",
@@ -302,11 +300,11 @@
         "tag": "tag"
       },
       "locked": {
-        "lastModified": 1668724070,
-        "narHash": "sha256-PzCWtnFvvjMSxkFAFGYERyuJxJSvrZosJsWxeBb2/D8=",
+        "lastModified": 1668817099,
+        "narHash": "sha256-TA0eq46zI+Xsq4fNEMlFBN8UdV0Qs9RoqVx8SAH7SY8=",
         "owner": "thelonelyghost",
         "repo": "workstation-deps-nix",
-        "rev": "2d8749f3259a5c1d18ea3cda896b6467597452aa",
+        "rev": "d17c9417847b3a1d6063989e0e3d09d07370a0b0",
         "type": "github"
       },
       "original": {
