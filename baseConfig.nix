@@ -1,6 +1,6 @@
-{ ... }@flakes:
+flakes:
 
-{ ... }@nonFlakes:
+nonFlakes:
 
 /* On each workstation, pass these items: */
 { system, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }:

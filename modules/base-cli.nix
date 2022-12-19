@@ -5,6 +5,7 @@
   home.packages = [
     pkgs.coreutils
     pkgs.nix-doc
+    pkgs.statix
     workstation-deps.pbcopy
     workstation-deps.pbpaste
   ];

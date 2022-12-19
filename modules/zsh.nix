@@ -9,7 +9,7 @@ let
       repo = "fast-syntax-highlighting";
 
       # manage revision and sha256 with flakes
-      rev = zsh-plugin-syntax-highlight.rev;
+      inherit (zsh-plugin-syntax-highlight) rev;
       sha256 = zsh-plugin-syntax-highlight.narHash;
     };
     file = "fast-syntax-highlighting.plugin.zsh";

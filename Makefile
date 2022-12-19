@@ -1,13 +1,20 @@
+NIX := nix
+STATIX := $(NIX) run nixpkgs\#statix --
+
+UPDATED_FLAKE_INPUTS = neovim workstation-deps zsh-plugin-syntax-highlight
+FLAKE_INPUTS = $(foreach i,$(UPDATED_FLAKE_INPUTS),--update-input $(i) )
 
 .PHONY: test
 test:
-	nix flake check
-	nix build '.#homeConfigurations."'"$(shell whoami)@$(shell hostname)"'".activationPackage' && rm ./result
+	$(STATIX) check
+	$(NIX) flake check
+	$(NIX) build '.#homeConfigurations."'"$(shell whoami)@$(shell hostname)"'".activationPackage' && rm ./result
 
 .PHONY: update
 update:
-	@echo Not yet implemented
-	@exit 1
+	$(NIX) flake lock $(FLAKE_INPUTS)
+	@# $(NIX) flake update
+	@# $(NIX) flake update
 
 .PHONY: upgrade
 upgrade: update

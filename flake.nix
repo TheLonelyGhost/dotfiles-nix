@@ -82,6 +82,8 @@
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
+            pkgs.statix
+            pkgs.jq
           ];
         };
       }
