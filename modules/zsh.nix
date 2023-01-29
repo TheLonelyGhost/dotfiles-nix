@@ -22,7 +22,7 @@ in
     enableCompletion = true;
 
     plugins = [
-      zsh-fast-syntax-highlighting
+      # zsh-fast-syntax-highlighting
     ];
 
     shellAliases = {
