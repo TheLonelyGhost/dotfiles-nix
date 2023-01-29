@@ -22,4 +22,10 @@
   };
 
   programs.zsh.shellAliases.cat = "${pkgs.bat}/bin/bat";
+
+  xdg.configFile."configstore/update-notifier-netlify-cli.json".text = ''
+  {
+    "optOut": true
+  }
+  '';
 }
