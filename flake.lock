@@ -300,11 +300,11 @@
         "tag": "tag"
       },
       "locked": {
-        "lastModified": 1671428280,
-        "narHash": "sha256-wtAAERe2JgGt2Y7+G7ZZqGYbE++Eeh9BcjL/rtovsM0=",
+        "lastModified": 1674968317,
+        "narHash": "sha256-jU21FGJqjB4VJ+KFQW0TRQ4MSr6RM2WappfOaosvYz0=",
         "owner": "thelonelyghost",
         "repo": "workstation-deps-nix",
-        "rev": "6df7b5a4899feccb467aadb351a849622d5de19c",
+        "rev": "0ee40489d4ba5d3d5c4430b57dfd13d11da484d0",
         "type": "github"
       },
       "original": {
