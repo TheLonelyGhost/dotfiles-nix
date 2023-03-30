@@ -85,6 +85,10 @@
             pkgs.statix
             pkgs.jq
           ];
+
+          shellHook = ''
+            export STATIX='${pkgs.statix}/bin/statix'
+          '';
         };
       }
     ));
