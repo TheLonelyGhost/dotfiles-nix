@@ -97,11 +97,11 @@
         "tree-sitter-nix": "tree-sitter-nix"
       },
       "locked": {
-        "lastModified": 1671422251,
-        "narHash": "sha256-s10SZVOGqerrSMmY4Qgo66A8D4+6OZgfLEqE676Nuuc=",
+        "lastModified": 1680137417,
+        "narHash": "sha256-/EHfCMJ++0zTiTszAQanrkuEQHHXg4b6B7xGDH7Mns8=",
         "owner": "thelonelyghost",
         "repo": "neovim-nix",
-        "rev": "d206e76a8aa6467d930dd355a5cb30cfcf58b6fb",
+        "rev": "58f72004534059a52da0a3ae88e2a1427bc86d9e",
         "type": "github"
       },
       "original": {
