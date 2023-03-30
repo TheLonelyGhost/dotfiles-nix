@@ -86,9 +86,9 @@
       elm.disabled = true;
       erlang.disabled = true;
       gcloud.disabled = true;
-      guix_shell.disabled = true;
+      # guix_shell.disabled = true;
       haskell.disabled = true;
-      haxe.disabled = true;
+      # haxe.disabled = true;
       hostname.disabled = true;
       julia.disabled = true;
       kotlin.disabled = true;
@@ -96,7 +96,7 @@
       meson.disabled = true;
       ocaml.disabled = true;
       openstack.disabled = true;
-      os.disabled = true;
+      # os.disabled = true;
       perl.disabled = true;
       php.disabled = true;
       pulumi.disabled = true;
