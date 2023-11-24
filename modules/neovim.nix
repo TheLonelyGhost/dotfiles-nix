@@ -7,6 +7,11 @@
     VISUAL = "${neovim.neovim}/bin/nvim";
   };
 
+  xdg.configFile."nvim/init.vim".text = ''
+  " This file is not observed. Instead modify neovim
+  " configuration determined in ~/.config/nixpkgs
+  '';
+
   home.packages = [
     neovim.neovim
   ];
