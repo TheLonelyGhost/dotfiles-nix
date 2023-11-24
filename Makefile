@@ -16,7 +16,7 @@ statix:
 .PHONY: test
 test: statix
 	$(NIX) flake check
-	$(NIX) build --no-out '.#homeConfigurations."'"$(shell whoami)@$(shell hostname)"'".activationPackage'
+	$(NIX) build --no-link '.#homeConfigurations."'"$(shell whoami)@$(shell hostname)"'".activationPackage'
 
 .PHONY: apply
 apply:
