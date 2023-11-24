@@ -2,9 +2,9 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "flake:nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11-small";
     overlays.url = "github:thelonelyghost/blank-overlay-nix";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "flake:flake-utils";
@@ -12,7 +12,7 @@
     flake-compat.flake = false;
 
     neovim = {
-      url = "github:thelonelyghost/neovim-nix";
+      url = "https://flakehub.com/f/TheLonelyGhost/neovim/*.tar.gz";
       inputs = {
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
