@@ -11,14 +11,22 @@
     flake-compat.url = "github:edolstra/flake-compat";
     flake-compat.flake = false;
 
-    neovim.url = "github:thelonelyghost/neovim-nix";
-    neovim.inputs.flake-utils.follows = "flake-utils";
-    neovim.inputs.flake-compat.follows = "flake-compat";
-    neovim.inputs.overlays.follows = "overlays";
-    workstation-deps.url = "github:thelonelyghost/workstation-deps-nix";
-    workstation-deps.inputs.flake-utils.follows = "flake-utils";
-    workstation-deps.inputs.flake-compat.follows = "flake-compat";
-    workstation-deps.inputs.overlays.follows = "overlays";
+    neovim = {
+      url = "github:thelonelyghost/neovim-nix";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
+        overlays.follows = "overlays";
+      };
+    };
+    workstation-deps = {
+      url = "github:thelonelyghost/workstation-deps-nix";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
+        overlays.follows = "overlays";
+      };
+    };
 
     zsh-plugin-syntax-highlight.url = "github:zdharma-continuum/fast-syntax-highlighting";
     zsh-plugin-syntax-highlight.flake = false;

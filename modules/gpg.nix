@@ -11,6 +11,8 @@
     pinentryFlavor = "tty";
   };
 
-  programs.git.signing.signByDefault = true;
-  programs.git.signing.key = null;
+  programs.git.signing = {
+    signByDefault = true;
+    key = null;
+  };
 }
