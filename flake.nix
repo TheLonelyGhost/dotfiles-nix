@@ -86,7 +86,7 @@
       in
       {
         # This is a placeholder for anything helpful when developing the flake:
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
@@ -94,9 +94,7 @@
             pkgs.jq
           ];
 
-          shellHook = ''
-            export STATIX='${pkgs.statix}/bin/statix'
-          '';
+          STATIX = "${pkgs.statix}/bin/statix";
         };
       }
     ));
