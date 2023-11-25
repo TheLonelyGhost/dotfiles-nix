@@ -95,12 +95,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1700862406,
-        "narHash": "sha256-KsRPNsD0ztOQxcJf2FGRiXtvmycboqhdhFntFBKl6+k=",
-        "rev": "dc89df32841fcb9a256fd5adc193f1fb6bbe759a",
-        "revCount": 59,
+        "lastModified": 1700872710,
+        "narHash": "sha256-gaLNtF5hkUfO/v3Snzly7vJLhimYl1Q0MZ6BzcKCA+w=",
+        "rev": "f9c8661a2ae3fe27f33d47c6a02b6256334a0520",
+        "revCount": 61,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/TheLonelyGhost/neovim/0.1.59%2Brev-dc89df32841fcb9a256fd5adc193f1fb6bbe759a/018c034d-f224-76d4-bc5c-7a17586e2e80/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/TheLonelyGhost/neovim/0.1.61%2Brev-f9c8661a2ae3fe27f33d47c6a02b6256334a0520/018c03eb-c2b5-7c9e-9bf4-39397058b5c8/source.tar.gz"
       },
       "original": {
         "type": "tarball",
