@@ -34,7 +34,7 @@
 
   outputs = { self, nixpkgs, home-manager, flake-compat, flake-utils, overlays, neovim, workstation-deps, zsh-plugin-syntax-highlight }:
     let
-      baseConfig = import ./baseConfig.nix {
+      baseConfig = import ./libs/baseConfig.nix {
         /* Flakes that need resolving per system */
         inherit nixpkgs home-manager flake-compat flake-utils neovim workstation-deps overlays;
       } {

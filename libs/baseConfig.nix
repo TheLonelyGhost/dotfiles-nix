@@ -3,7 +3,7 @@ flakes:
 nonFlakes:
 
 /* On each workstation, pass these items: */
-{ system, fullName, commitEmail, hostname, username, homeDirectory, windowsUsername ? "" }:
+{ system, fullName, commitEmail, hostname, username, homeDirectory ? "/home/${username}", windowsUsername ? "" }:
 
 let
   /* Flakes -> Package bundles */
@@ -38,25 +38,25 @@ in
         ];
       };
     }
-    ./modules/base-cli.nix
-    ./modules/direnv.nix
-    ./modules/git.nix
-    ./modules/golang.nix
-    ./modules/gpg.nix
-    ./modules/keepassxc.nix
-    ./modules/neovim.nix
-    ./modules/ripgrep.nix
-    ./modules/ssh.nix
-    ./modules/starship.nix
-    ./modules/tmux.nix
-    ./modules/zsh.nix
+    ../modules/base-cli.nix
+    ../modules/direnv.nix
+    ../modules/git.nix
+    ../modules/golang.nix
+    ../modules/gpg.nix
+    ../modules/keepassxc.nix
+    ../modules/neovim.nix
+    ../modules/ripgrep.nix
+    ../modules/ssh.nix
+    ../modules/starship.nix
+    ../modules/tmux.nix
+    ../modules/zsh.nix
     # TODO:
-    # ./modules/taskwarrior.nix
+    # ../modules/taskwarrior.nix
   ];
 
   inherit pkgs;
 
-  extraSpecialArgs = import ./libs/extraArgs.nix
+  extraSpecialArgs = import ./extraArgs.nix
     {
       inherit pkgs neovim workstation-deps golang-webdev zsh-plugin-syntax-highlight;
     }
