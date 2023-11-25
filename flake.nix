@@ -20,7 +20,7 @@
       };
     };
     workstation-deps = {
-      url = "github:thelonelyghost/workstation-deps-nix";
+      url = "https://flakehub.com/f/TheLonelyGhost/workstation-deps/*.tar.gz";
       inputs = {
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
