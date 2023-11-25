@@ -44,39 +44,25 @@
     in
     {
       homeConfigurations = {
-        "thelonelyghost@TLG-DESKTOP" = home-manager.lib.homeManagerConfiguration (
-          let
-            fullName = "David Alexander";
-            commitEmail = "opensource@thelonelyghost.com";
+        "thelonelyghost@TLG-DESKTOP" = home-manager.lib.homeManagerConfiguration (baseConfig {
+          fullName = "David Alexander";
+          commitEmail = "opensource@thelonelyghost.com";
 
-            system = "x86_64-linux";
-            hostname = "TLG-DESKTOP";
-            username = "thelonelyghost";
-            homeDirectory = "/home/${username}";
+          system = "x86_64-linux";
+          hostname = "TLG-DESKTOP";
+          username = "thelonelyghost";
 
-            windowsUsername = "thelonelyghost";
-          in
-          baseConfig {
-            inherit system fullName commitEmail hostname username homeDirectory windowsUsername;
-          }
-        );
+          windowsUsername = "thelonelyghost";
+        });
 
-        "thelonelyghost@DESKTOP-9R2I02I" = home-manager.lib.homeManagerConfiguration (
-          let
-            fullName = "David Alexander";
-            commitEmail = "opensource@thelonelyghost.com";
-
-            system = "x86_64-linux";
-            hostname = "DESKTOP-9R2I02I";
-            username = "thelonelyghost";
-            homeDirectory = "/home/${username}";
-
-            windowsUsername = "david";
-          in
-          baseConfig {
-            inherit system fullName commitEmail hostname username homeDirectory windowsUsername;
-          }
-        );
+        "thelonelyghost@DESKTOP-9R2I02I" = home-manager.lib.homeManagerConfiguration (baseConfig {
+          system = "x86_64-linux";
+          fullName = "David Alexander";
+          commitEmail = "opensource@thelonelyghost.com";
+          hostname = "DESKTOP-9R2I02I";
+          username = "thelonelyghost";
+          windowsUsername = "david";
+        });
       };
     } // (flake-utils.lib.eachDefaultSystem (system:
       let
